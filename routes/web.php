@@ -3,6 +3,12 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SendMailController;
+use App\Http\Requests\RegisterRequest;
+use Illuminate\Http\Request;
+// use App\Models\Users;
+use Illuminate\Support\Facades\validator;
+use App\Http\Controllers\UsersController;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +21,7 @@ use App\Http\Controllers\SendMailController;
 |
 */
 
-Route::get('/index', function () {
+Route::get('/', function () {
     return view('index');
 });
 
@@ -39,6 +45,21 @@ Route::get('/navbar/match', function () {
 Route::get('/mail/send',[SendMailController::class , 'send']);
 
 
+Route::prefix('admin')->group(function (){
+
+    Route::get('/users/userlist',[UsersController::class,'userlist']);
+    Route::get('/users/login',[UsersController::class,'login']);
+    Route::get('/users/register',  [UsersController::class,'register']) ;
+    Route::post('/users/storeregister',  [UsersController::class,'storeregister']) ;
+    Route::delete('/users/delete/{UserID}', function ($UserID)
+     {
+        $users=Users::find($UserID);
+        $users->delete();
+        session::flash('message', "رکورد حذف شد.");
+        return redirect('admin/users/userlist');
+      });
+    
+});
 
 
 

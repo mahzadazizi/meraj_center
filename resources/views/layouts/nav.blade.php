@@ -38,21 +38,10 @@
                 </li>
 
                 <li class="nav-item ms-3">
-
-                        @if (Route::has('login'))
-                                @auth
-                                    <a href="{{ url('/dashboard') }}" class="nav-link custom-btn custom-border-btn btn">Dashboard</a>
-                                @else
-                                    <a href="{{ route('login') }}" class="nav-link custom-btn custom-border-btn btn">ورود</a>
-                 </li>
-                 <li class="nav-item ms-3">
-               
-                                    @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="nav-link custom-btn custom-border-btn btn">ثبت نام</a>
-                                    @endif
-                                @endauth
-                        @endif
-                    
+                                    <a href="admin/users/login" class="nav-link custom-btn custom-border-btn btn">ورود</a>
+                </li>
+                <li class="nav-item ms-3">
+                                     <a href="admin/users/register" class="nav-link custom-btn custom-border-btn btn">ثبت نام</a>   
                 </li>
 
             </ul>
