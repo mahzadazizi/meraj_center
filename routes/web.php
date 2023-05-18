@@ -5,10 +5,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SendMailController;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
-// use App\Models\Users;
+use App\Models;
+use App\Models\Users;
 use Illuminate\Support\Facades\validator;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Session;
+
+
+
+
+
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,41 +35,47 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/navbar/subject', function () {
-    return view('subject');
+Route::get('subject', function () {
+    return view('navbar/subject');
 });
 
-Route::get('/navbar/about', function () {
-    return view('about');
+Route::get('about us', function () {
+    return view('navbar/about us');
 });
-Route::get('/navbar/contact', function () {
-    return view('contact');
+Route::get('contact', function () {
+    return view('navbar/contact');
 });
-Route::get('/navbar/news', function () {
-    return view('news');
+Route::get('news', function () {
+    return view('navbar/news');
 });
-Route::get('/navbar/match', function () {
-    return view('match');
+Route::get('match', function () {
+    return view('navbar/match');
 });
 
 Route::get('/mail/send',[SendMailController::class , 'send']);
 
 
-Route::prefix('admin')->group(function (){
+// Route::prefix('admin')->group(function (){
 
-    Route::get('/users/userlist',[UsersController::class,'userlist']);
-    Route::get('/users/login',[UsersController::class,'login']);
-    Route::get('/users/register',  [UsersController::class,'register']) ;
-    Route::post('/users/storeregister',  [UsersController::class,'storeregister']) ;
-    Route::delete('/users/delete/{UserID}', function ($UserID)
-     {
-        $users=Users::find($UserID);
-        $users->delete();
-        session::flash('message', "رکورد حذف شد.");
-        return redirect('admin/users/userlist');
-      });
+//     Route::get('/users/userlist',[UsersController::class,'userlist']);
+//     Route::get('/users/login',[UsersController::class,'login']);
+//     Route::get('/users/register',  [UsersController::class,'register']) ;
+//     Route::post('/users/storeregister',  [UsersController::class,'storeregister']) ;
+//     Route::delete('/users/delete/{UserID}', function ($UserID)
+//      {
+//         $users=Users::find($UserID);
+//         $users->delete();
+//         session::flash('message', "رکورد حذف شد.");
+//         return redirect('admin/users/userlist');
+//       });
     
-});
+// });
 
+    Route::get('login',[UsersController::class,'login']);
+    Route::get('register',  [UsersController::class,'register']) ;
+    Route::post('storeregister',  [UsersController::class,'storeregister']) ;
+    Route::get('userList',[UsersController::class,'userList']);
+    Route::get('register/edit',  [UsersController::class,'edit']) ;
 
+  
 

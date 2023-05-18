@@ -12,12 +12,12 @@ class UsersController extends Controller
 {
 
   
-  public function userlist()
+  public function userList()
 
   {
   
    $records=Users::latest()->paginate(4);
-   return view('admin/users/userlist',['Users'=>$records]);
+   return view('admin/users/userList',['Users'=>$records]);
 
   
   
@@ -76,8 +76,21 @@ class UsersController extends Controller
         if ($users)
         {
            session::flash('message', 'عملیات با موفقیت انجام شد.');
-           return redirect('admin/users/userlist');
+           return redirect('userList');
         }
     }
+
+
+
+    
+  public function edit_register()
+
+  {
+  
+    return view('admin/users/editRegister',['Users'=>$records]);
+   
+
+  
+  }
   
 }

@@ -14,11 +14,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link click-scroll" href="index">صفحه اصلی</a>
+                    <a class="nav-link click-scroll" href="/">صفحه اصلی</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link click-scroll" href="about">درباره ما</a>
+                    <a class="nav-link click-scroll" href="about us">درباره ما</a>
                 </li>
 
                 <li class="nav-item">
@@ -38,10 +38,10 @@
                 </li>
 
                 <li class="nav-item ms-3">
-                                    <a href="admin/users/login" class="nav-link custom-btn custom-border-btn btn">ورود</a>
+                                    <a href="login" class="nav-link custom-btn custom-border-btn btn">ورود</a>
                 </li>
                 <li class="nav-item ms-3">
-                                     <a href="admin/users/register" class="nav-link custom-btn custom-border-btn btn">ثبت نام</a>   
+                                     <a href="register" class="nav-link custom-btn custom-border-btn btn">ثبت نام</a>   
                 </li>
 
             </ul>
