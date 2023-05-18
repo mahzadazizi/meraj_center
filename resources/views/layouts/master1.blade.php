@@ -27,7 +27,7 @@
     </head>
     
 
-     {{-- @include(' layouts.head ')  --}}
+    
 
     <body >
 

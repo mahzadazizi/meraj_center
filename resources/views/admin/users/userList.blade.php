@@ -21,28 +21,34 @@ use Illuminate\Support\Facades;
 <br>
 <br>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
 
-
-<table   class="table table-striped ">
-<tbody>
+<table class="table table-striped table-bordered table-hover">
+    
+                
+                    
+      
+    <thead>
     <tr>
-        <td >user_id</td>
-        <td >UserName</td>
-        <td >delete</td>
-        <td >edit</td>
+        <th >user_id</th>
+        <th >UserName</th>
+        <th >delete</th>
+        <th >edit</th>
     </tr>
    
-
+   </thead>
 
     
 
-   
+   <tbody>
       @if(count($Users))
         @foreach($Users  as $user)
             
             <tr>
-                <td>{{$user->UserID}}</td>
-                <td>{{$user->UserName}}</td>
+                <td>{{$user->UserID}}</th>
+                <td>{{$user->UserName}}</th>
                 <td>
                     <form action="admin/users/delete/{{$user->UserID}}" method="post">
                            @csrf
@@ -65,6 +71,10 @@ use Illuminate\Support\Facades;
 
     </tbody>
 </table>
+         
+</div>
+</div>
+</div>
 <br>
 <br>
 
