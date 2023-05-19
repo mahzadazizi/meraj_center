@@ -58,7 +58,7 @@ use Illuminate\Support\Facades;
                     </form>
                 </td>
                 <td>
-                    <form action="login_edit/{{$user->UserID}}" method="post">
+                    <form action="admin/users/editUsers/{{$user->UserID}}" method="post">
                            @csrf
                            @method("edit")
                            <button class="btn btn-danger btn_sm" > edit</button>

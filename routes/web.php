@@ -73,9 +73,16 @@ Route::get('/mail/send',[SendMailController::class , 'send']);
 
     Route::get('login',[UsersController::class,'login']);
     Route::get('register',  [UsersController::class,'register']) ;
-    Route::post('storeregister',  [UsersController::class,'storeregister']) ;
+    Route::post('storeRegister',  [UsersController::class,'storeRegister']) ;
     Route::get('userList',[UsersController::class,'userList']);
-    Route::get('register/edit',  [UsersController::class,'edit']) ;
+    Route::get('editUsers{{UserID}}', [UsersController::class, 'usersEdit'])->name('usersEdit');
+    Route::put('editUsersStore', [UsersController::class,'editUsersStore'])->name('editUsersStore');
+         
+    
+      
 
-  
+       
+    // Route::get('users/{id}/edit', 'UserController@edit')->name('users.edit');
+    // Route::put('users/{id}', 'UserController@update')->name('users.update');
 
+   

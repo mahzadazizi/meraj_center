@@ -43,7 +43,9 @@
                 <li class="nav-item ms-3">
                                      <a href="register" class="nav-link custom-btn custom-border-btn btn">ثبت نام</a>   
                 </li>
-
+                <li class="nav-item ms-3">
+                                     <a href="userList" class="nav-link custom-btn custom-border-btn btn">لیست کاربران </a>   
+                </li>
             </ul>
         </div>
     </div>
