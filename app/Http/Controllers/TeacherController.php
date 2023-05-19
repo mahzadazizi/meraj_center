@@ -9,7 +9,7 @@ use App\Models\teacher;
 use Illuminate\Support\Facades\Auth;
 
 
-class teachercontroller extends Controller
+class TeacherController extends Controller
 {
     public function login()
 

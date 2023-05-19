@@ -9,7 +9,7 @@ uploud file
 @endsection 
 
 @section('content')
-
+<br><br><br><br><br><br><br><br><br>
 @if(Session::has('success'))
 <img src="upload/{{session('newFileName')}}" style="display: block; margin:auto">
 @endif 
@@ -28,16 +28,22 @@ uploud file
                       {{session('success')}}
           </ul>
       </div>
-   @endif   
+   @endif 
+    
   <div class="container">       
       <div class="form-group">
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
         <label for="fileInput">انتخاب فایل:</label>
         <input type="file" name="fileInput" id="fileInput">
+            </tr>
+          <thead>
       </div>
       <div class="form-group">
         <input type="submit" value="آپلود فایل">
       </div>
 </form>
-  
+<br><br><br><br><br><br><br><br><br><br>
 
 @endsection

@@ -83,16 +83,14 @@ Route::get('/mail/send',[SendMailController::class , 'send']);
     Route::delete('deleteUsers/{{UserID}}', [UsersController::class,'usersDelete']);
     
 
-    Route::get('/uploads', function () {
-        return view('admin.teacher.uploadFile');
-    })->name('admin.teacher.uploadFile');
+    // Route::get('/uploads', function () {
+    //     return view('admin.teacher.uploadFile');
+    // })->name('admin.teacher.uploadFile');
     
     
     
-    Route::get('/upload', [HomeController::class, 'uploadForm']);
-    Route::post('/upload', [HomeController::class, 'doUpload']);
-      
-
+    Route::get('/upload', [TeacherController::class, 'uploadForm']);
+    Route::post('/upload', [TeacherController::class, 'doUpload']);
     Route::get('teacherLogin',[TeacherController::class,'login']);
 
    
