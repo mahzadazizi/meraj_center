@@ -11,7 +11,16 @@
 
 
     <!-- ======= Featured Section ======= -->
-
+    @if(Session::has('message'))
+    <div  class="alert alert-success">
+      
+    </div>
+    <div style="background-color: #a6fcf0; padding: 20px; border-radius: 5px; text-align: center; direction: rtl; ">
+  
+        <p style="color: #666;"> {{Session::get('message')}}</p>
+    </div>
+    @endif
+    
     <main>
 <section class="hero-section hero-section-full-height">
     <div class="container-fluid">

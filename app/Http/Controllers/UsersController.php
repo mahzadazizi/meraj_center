@@ -6,22 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\Users;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 
 {
  //users list view
   
-  public function userList()
+     public function userList()
 
-  {
+     {
   
-   $records=Users::latest()->paginate(4);
-   return view('admin/users/userList',['Users'=>$records]);
-
-  
-  
-  }
+           $records=Users::latest()->paginate(4);
+           return view('admin/users/userList',['Users'=>$records]);
+     }
 
   //users login view
 
@@ -30,24 +28,44 @@ class UsersController extends Controller
   {
   
    
-    return view('admin.users.login' );
+    return view('admin.users.userLogin' );
 
   
   }
+  public function usersLogin(Request $request )
+
+  {
+        $users = Users::where("UserName",request('UserName'));
+        if(isset($user)){
+
+          session::flash('message', request('Firstname')."عزیز خوش آمدید");
+          return redirect('index');
+        }
+ }
+    
+   
+    
+
+  
+ 
+
+
+
+
   //users register view
 
   public function register()
 
   {
     
-    return view('admin/users/register' );
+    return view('admin/users/userRegister' );
 
 
   }
 
   //users register store 
 
-  public function storeRegister()
+  public function userStoreRegister()
   {
       $validator=validator::make(request()->all() ,
           [
@@ -89,7 +107,7 @@ class UsersController extends Controller
     { 
       $users=Users::find($UserID);
         if ($users) {
-            return view('admin.users.editUsers')->with("users",$users);
+            return view('admin.users.editUsers',["users"=>$users]);
          }
     }
 
@@ -115,13 +133,16 @@ class UsersController extends Controller
   
              
     
-       $users= new Users();
+       $users=Users::findOrFail($userID);
 
-      $users->UserName=request('UserName');
-      $users->Password=request('Password');
-      $users->FirstName=request('FirstName');
-      $users->LastName=request('LastName');
-      $users->save();
+        $users->update([
+
+           'UserName'=>$validator['UserName'],
+           'Password'=>$validator['Password'],
+           'FirstName'=>$validator['FirstName'],
+           'LastName'=>$validator['LastName'],
+     
+        ]);
 
     
 
@@ -131,6 +152,20 @@ class UsersController extends Controller
        return redirect('userList');
      }
     }
+    public function usersDelete($UserID)
+    { 
+            $users=Users::find($UserID);
+            $users->delete();
+            session::flash('message', "رکورد حذف شد.");
+            return redirect('admin/users/userlist');
+    }
+        
    
+    public  function uploadForm(){
+      return view('pages.upload');
+  }
+
+
+  
 
 }

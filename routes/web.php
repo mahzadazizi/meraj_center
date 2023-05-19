@@ -9,9 +9,10 @@ use App\Models;
 use App\Models\Users;
 use Illuminate\Support\Facades\validator;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\TeacherController;
+
 use Illuminate\Support\Facades\Session;
-
-
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -61,28 +62,37 @@ Route::get('/mail/send',[SendMailController::class , 'send']);
 //     Route::get('/users/login',[UsersController::class,'login']);
 //     Route::get('/users/register',  [UsersController::class,'register']) ;
 //     Route::post('/users/storeregister',  [UsersController::class,'storeregister']) ;
-//     Route::delete('/users/delete/{UserID}', function ($UserID)
-//      {
-//         $users=Users::find($UserID);
-//         $users->delete();
-//         session::flash('message', "رکورد حذف شد.");
-//         return redirect('admin/users/userlist');
-//       });
-    
-// });
+//    
 
-    Route::get('login',[UsersController::class,'login']);
-    Route::get('register',  [UsersController::class,'register']) ;
-    Route::post('storeRegister',  [UsersController::class,'storeRegister']) ;
+    Route::get('userLogin',[UsersController::class,'login']);
+    Route::post('usersLogin',[UsersController::class,'usersLogin']);
+    Route::get('userRegister',  [UsersController::class,'register']) ;
+    Route::post('userStoreRegister',  [UsersController::class,'userStoreRegister']) ;
     Route::get('userList',[UsersController::class,'userList']);
-    Route::get('editUsers{{UserID}}', [UsersController::class, 'usersEdit'])->name('usersEdit');
-    Route::put('editUsersStore', [UsersController::class,'editUsersStore'])->name('editUsersStore');
-         
+
+    Route::get("editUsers/{{UserID}}", function ($UserID)
+    {
+       $users=Users::find($UserID);
+       returnview('admin.users.editUsers');
+    })->name('admin.users.editUsers');
     
+       
+    
+    Route::get('editUsers/{{UserID}}', [UsersController::class, 'usersEdit'])->name('usersEdit');
+    Route::put('editUsersStore', [UsersController::class,'editUsersStore'])->name('editUsersStore');
+    Route::delete('deleteUsers/{{UserID}}', [UsersController::class,'usersDelete']);
+    
+
+    Route::get('/uploads', function () {
+        return view('admin.teacher.uploadFile');
+    })->name('admin.teacher.uploadFile');
+    
+    
+    
+    Route::get('/upload', [HomeController::class, 'uploadForm']);
+    Route::post('/upload', [HomeController::class, 'doUpload']);
       
 
-       
-    // Route::get('users/{id}/edit', 'UserController@edit')->name('users.edit');
-    // Route::put('users/{id}', 'UserController@update')->name('users.update');
+    Route::get('teacherLogin',[TeacherController::class,'login']);
 
    

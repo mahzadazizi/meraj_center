@@ -1,13 +1,21 @@
 @extends('layouts.master1')
 
+
+@section('title')
+
+teachers login
+ 
+@endsection 
+
 @section('content')
+
 
 
   <main id="main">
     <section id="featured" class="featured">
       <div class="container" style="padding-left:30%;padding-right:30%;">
 
-      <form style="margin-top:100px" method="POST" action="">
+      <form style="margin-top:100px" method="POST" action="teacherLogin">
   
        @csrf
         <div class="form-group">

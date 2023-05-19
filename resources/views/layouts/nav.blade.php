@@ -37,11 +37,17 @@
                     <a class="nav-link click-scroll" href="contact">ارتباط با ما</a>
                 </li>
 
+                    <li class="nav-item dropdown ms-3">
+                        <a class="nav-link click-scroll dropdown-toggle" href="" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">ورود</a>
+
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                            <li><a class="dropdown-item" href="userLogin">ورود کاربران</a></li>
+
+                            <li><a class="dropdown-item" href="teacherLogin">ورود دبیران</a></li>
+                        </ul>
+                   
                 <li class="nav-item ms-3">
-                                    <a href="login" class="nav-link custom-btn custom-border-btn btn">ورود</a>
-                </li>
-                <li class="nav-item ms-3">
-                                     <a href="register" class="nav-link custom-btn custom-border-btn btn">ثبت نام</a>   
+                                     <a href="userRegister" class="nav-link custom-btn custom-border-btn btn">ثبت نام</a>   
                 </li>
                 <li class="nav-item ms-3">
                                      <a href="userList" class="nav-link custom-btn custom-border-btn btn">لیست کاربران </a>   

@@ -50,7 +50,7 @@ use Illuminate\Support\Facades;
                 <td>{{$user->UserID}}</th>
                 <td>{{$user->UserName}}</th>
                 <td>
-                    <form action="admin/users/delete/{{$user->UserID}}" method="post">
+                    <form action="deleteUsers/{{$user->UserID}}" method="post">
                            @csrf
                            @method("delete")
                            <button class="btn btn-danger btn_sm" > delete </button>
@@ -58,7 +58,7 @@ use Illuminate\Support\Facades;
                     </form>
                 </td>
                 <td>
-                    <form action="admin/users/editUsers/{{$user->UserID}}" method="post">
+                    <form action="editUsers/{{$user->UserID}}" method="post">
                            @csrf
                            @method("edit")
                            <button class="btn btn-danger btn_sm" > edit</button>

@@ -31,7 +31,7 @@
 <main id="main">
   <section id="featured" class="featured">
     <div class="container">
-    <form style="margin-top:100px" method="POST" action="storeRegister">
+    <form style="margin-top:100px" method="POST" action="userStoreRegister">
 
       @csrf
         <div class="form-group">
