@@ -34,7 +34,7 @@ class TeacherController extends Controller
         $file=$request->file('fileInput');
 
         $filename=uniqid().'____'.$file->getClientOriginalName();
-        $file->move(public_path().'/uploads',$filename);
+        $file->move(public_path().'/upload',$filename);
 
         return back()
             ->with('success','فایل با موفقیت بارگذاری شد.')

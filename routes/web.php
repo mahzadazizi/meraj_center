@@ -89,8 +89,8 @@ Route::get('/mail/send',[SendMailController::class , 'send']);
     
     
     
-    Route::get('/upload', [TeacherController::class, 'uploadForm']);
-    Route::post('/upload', [TeacherController::class, 'doUpload']);
+    Route::get('/uploadfile', [TeacherController::class, 'uploadForm']);
+    Route::post('/uploadfile', [TeacherController::class, 'doUpload']);
     Route::get('teacherLogin',[TeacherController::class,'login']);
 
    
