@@ -32,22 +32,42 @@ class UsersController extends Controller
 
   
   }
+
+
+
+
   public function usersLogin(Request $request )
 
   {
-        $users = Users::where("UserName",request('UserName'));
-        if(isset($user)){
 
-          session::flash('message', request('Firstname')."عزیز خوش آمدید");
-          return redirect('index');
+    $validator=validator::make(request()->all() ,
+    [
+      'UserName'=>'required',
+      'Password'=>'required' ,
+      
+
+    ],
+    [
+      'UserName.required'=>"نام کاربری را وارد کنید",
+      'Password.required'=>"کلمه عبور را وارد کنید",
+
+    ])->validated();
+
+
+        $users = Users::where("UserName",request('UserName'))->where("Password",request('Password'))->first();
+       
+        if(isset($users)){
+
+          session::flash('message'," خوش آمدید");
+          return redirect('/')->with(['usres' => $users]);
+
         }
+        else {
+          
+          return redirect()->back()->withErrors(["کلمه عبور یا رمز ورود اشتباه است"]);
+      }
  }
-    
-   
-    
-
   
- 
 
 
 
@@ -100,72 +120,17 @@ class UsersController extends Controller
            return redirect('userList');
         }
     }
-
-   //users edit
-
-    public function usersEdit($UserID)
-    { 
-      $users=Users::find($UserID);
-        if ($users) {
-            return view('admin.users.editUsers',["users"=>$users]);
-         }
-    }
-
-
-   //users edit store
-
-    public function editUsersStore(Request $request, $userID)
-    {
-      $validator=validator::make(request()->all() ,
-      [
-        'UserName'=>'required|min:5|max:15',
-        'Password'=>'required' ,
-        
-
-      ],
-      [
-        'UserName.required'=>"نام کاربری را وارد کنید",
-        'UserName.min'=>'نام کاربری باید بیش از 5 کاراکتر باشد',
-        'UserName.max'=>'نام کاربری باید کمتر از 15 کاراکتر باشد',
-        'Password.required'=>"کلمه عبور را وارد کنید",
-
-      ])->validated();
-  
-             
-    
-       $users=Users::findOrFail($userID);
-
-        $users->update([
-
-           'UserName'=>$validator['UserName'],
-           'Password'=>$validator['Password'],
-           'FirstName'=>$validator['FirstName'],
-           'LastName'=>$validator['LastName'],
-     
-        ]);
-
-    
-
-      if ($users)
-     {
-       session::flash('message', 'اطلاعات ویرایش شد');
-       return redirect('userList');
-     }
-    }
-    public function usersDelete($UserID)
-    { 
-            $users=Users::find($UserID);
-            $users->delete();
-            session::flash('message', "رکورد حذف شد.");
-            return redirect('admin/users/userlist');
-    }
-        
    
-    public  function uploadForm(){
-      return view('pages.upload');
-  }
+    
 
+        // public function deleteUsers(Users $user)
+        // {
+        //     $users=Users::where("UserID",$user->UserID)->first();
+        //     $users->delete();
+        //     session::flash('message', "رکورد حذف شد.");
+        //     return redirect('userList');
+        // }
+   
 
-  
 
 }

@@ -10,7 +10,6 @@ use App\Models\Users;
 use Illuminate\Support\Facades\validator;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TeacherController;
-
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,11 +30,13 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// index route
 Route::get('/', function () {
     return view('index');
 });
 
+
+ // navbar route
 Route::get('subject', function () {
     return view('navbar/subject');
 });
@@ -69,28 +70,74 @@ Route::get('/mail/send',[SendMailController::class , 'send']);
     Route::get('userRegister',  [UsersController::class,'register']) ;
     Route::post('userStoreRegister',  [UsersController::class,'userStoreRegister']) ;
     Route::get('userList',[UsersController::class,'userList']);
+    
 
-    Route::get("editUsers/{{UserID}}", function ($UserID)
+
+    //users edit
+
+    Route::get("editUsers{UserID}", function ($UserID)
     {
-       $users=Users::find($UserID);
-       returnview('admin.users.editUsers');
-    })->name('admin.users.editUsers');
+       $user=Users::where("UserID",$UserID)->first();
+       return  view('admin.users.editUsers',["user"=>$user]);
+    });
     
-       
+    //users edit store
     
-    Route::get('editUsers/{{UserID}}', [UsersController::class, 'usersEdit'])->name('usersEdit');
-    Route::put('editUsersStore', [UsersController::class,'editUsersStore'])->name('editUsersStore');
-    Route::delete('deleteUsers/{{UserID}}', [UsersController::class,'usersDelete']);
+    Route::put('editUsers{UserID}' , function (Request $request,$UserName)
+    {
+      $validator=validator::make(request()->all() ,
+      [
+        'UserName'=>'required|min:5|max:15',
+        'Password'=>'required' ,
+        'FirstName'=>'required' ,
+        'LastName'=>'required' ,
+      ],
+      [
+        'UserName.required'=>"نام کاربری را وارد کنید",
+        'UserName.min'=>'نام کاربری باید بیش از 5 کاراکتر باشد',
+        'UserName.max'=>'نام کاربری باید کمتر از 15 کاراکتر باشد',
+        'Password.required'=>"کلمه عبور را وارد کنید",
+        'FirstName.required'=>"نام  را وارد کنید",
+        'LastName.required'=>"نام خانوادگی را وارد کنید",
+      ])->validated();
+  
+             
+      $users=Users::where("UserName",$UserName)->update([
+        //  $records=Users::first($UserID)
+
+           'UserName'=>$validator['UserName'],
+           'Password'=>$validator['Password'],
+           'FirstName'=>$validator['FirstName'],
+           'LastName'=>$validator['LastName'],
+           ]);
+        
+      
     
 
-    // Route::get('/uploads', function () {
-    //     return view('admin.teacher.uploadFile');
-    // })->name('admin.teacher.uploadFile');
-    
-    
-    
+      if ($users)
+     {
+       session::flash('message', 'اطلاعات ویرایش شد');
+       return redirect('userList');
+     }
+    });
+
+  // users delete
+    Route::delete('deleteUsers{UserID}',   function ($UserID)
+    { 
+            $users=Users::where("UserID",$UserID)->delete();
+            session::flash('message', "رکورد حذف شد.");
+            return redirect('userList');
+    });
+
+
+    //teachers upload
     Route::get('/uploadfile', [TeacherController::class, 'uploadForm']);
     Route::post('/uploadfile', [TeacherController::class, 'doUpload']);
+
+     //teachers login
     Route::get('teacherLogin',[TeacherController::class,'login']);
 
+    
+    // Route::delete('/users/{User}', [UsersController::class, 'deleteUsers'])->name('deleteUsers');
    
+

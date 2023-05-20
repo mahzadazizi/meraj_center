@@ -7,7 +7,21 @@ users login
  
 @endsection 
 
+
 @section('content')
+  
+@if ($errors->any())
+<div class="alert alert-danger" >
+   <ul>
+        @foreach ($errors->all() as $error)
+          <li>
+             {{ $error}};
+          </li>
+  
+        @endforeach
+   </ul> 
+</div>
+@endif
 
 
 
@@ -26,7 +40,7 @@ users login
 
 
         <div class="form-group">
-          <label for="password">کلمه عبور</label>
+          <label for="Password">کلمه عبور</label>
           <input type="password" class="form-control" id="Password" name="Password" >
         </div>
 

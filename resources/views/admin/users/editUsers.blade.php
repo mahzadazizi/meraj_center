@@ -31,12 +31,13 @@
 <main id="main">
   <section id="featured" class="featured">
     <div class="container">
-    <form style="margin-top:100px" method="POST" action="admin/users/editUsersStore">
+    <form style="margin-top:100px" method="POST" action="editUsers{{$user->UserName}}">
 
       @csrf
+      @method('put')
         <div class="form-group">
           <label for="UserName">نام کاربری</label>
-          <input type="text" class="form-control" id="text" name="UserName" value="{{$users->"UserName"}}">
+          <input type="text" class="form-control" id="UserName" name="UserName" value="{{$user->UserName}}">
         </div>
 
 
@@ -55,14 +56,14 @@
 
         <div class="form-group"  style="margin-top:20px">
           <label for="FirstName">نام </label>
-          <input type="text" class="form-control" id="text" name="FirstName" value="{{$users->"FirstName"}}" >
+          <input type="text" class="form-control" id="FirstName" name="FirstName" value="{{$user->FirstName}}" >
         </div>
 
 
 
         <div class="form-group"  style="margin-top:20px">
           <label for="LastName">نام خانوادگی </label>
-          <input type="text" class="form-control" id="text" name="LastName" value="{{$users->"LastName"}}">
+          <input type="text" class="form-control" id="LastName" name="LastName" value="{{$user->LastName}}">
         </div>
 
 
