@@ -67,6 +67,13 @@
         </div>
 
 
+
+        <div class="form-group"  style="margin-top:20px">
+          <label for="Email">ایمیل  </label>
+          <input type="text" class="form-control" id="Email" name="Email" value="{{$user->Email}}">
+        </div>
+
+
         <button type="submit" class="btn btn-primary"  style="margin-top:20px" >ویرایش </button>
   </form>
 

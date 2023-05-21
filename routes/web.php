@@ -12,8 +12,8 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-
-
+use App\Mail;
+use App\Mail\RegisterEmail;
 
 
 
@@ -54,7 +54,7 @@ Route::get('match', function () {
     return view('navbar/match');
 });
 
-Route::get('/mail/send',[SendMailController::class , 'send']);
+Route::get('mailSend',[SendMailController::class , 'send']);
 
 
 // Route::prefix('admin')->group(function (){

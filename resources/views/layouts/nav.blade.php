@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light shadow-lg">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="/">
             <img src="images/logo/IMG-20230513-WA0011.jpg" class="logo img-fluid" alt="Kind Heart Charity">
             <span>
                 کانون فرهنگی هنری معراج

@@ -1,19 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Mail\MyTestEmail;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
-use App\Http\Mail\MyTestEmail;
-class sendMailController extends Controller
+
+class SendMailController extends Controller
 {
+   
+
     public function send()
     {
-        $to = 'mahzadazizi@gmail.com';
+        $to = 'mahzad123@gmail.com';
         $fromAddress = 'admin@mysite.com';
         $subject = 'پیام عضویت';
         $body='عضویت شما در سایت با موفقیت انجام شد';
         $fullname = 'مهزاد عزیزی';
-        $username = 'azizi123';
+        $username = 'm.azizi';
 
        if (Mail::to($to)->send(new MyTestEmail($subject , $fromAddress ,$fullname , $username,  $body))) return "<h2> ایمیل ارسال گردید </h2>"; else return "<h2> خطا در ارسال ایمیل </h2>";
     }

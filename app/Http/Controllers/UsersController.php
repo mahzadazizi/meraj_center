@@ -91,7 +91,9 @@ class UsersController extends Controller
           [
             'UserName'=>'required|min:5|max:15',
             'Password'=>'required' ,
-            
+            "FirstName"=>'required',
+            "LastName"=>'required',
+            'Email'=>'required',
 
           ],
           [
@@ -110,14 +112,16 @@ class UsersController extends Controller
           $users->Password=request('Password');
           $users->FirstName=request('FirstName');
           $users->LastName=request('LastName');
+          $users->Email=request('Email');
           $users->save();
 
         
     
         if ($users)
         {
-           session::flash('message', 'عملیات با موفقیت انجام شد.');
-           return redirect('userList');
+          session::flash('message', 'عملیات با موفقیت انجام شد.');
+          //  return redirect('mailSend')->with(['usres' => $users]);
+          return redirect('userList');
         }
     }
    

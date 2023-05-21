@@ -55,20 +55,25 @@
 
         <div class="form-group"  style="margin-top:20px">
           <label for="FirstName">نام </label>
-          <input type="text" class="form-control" id="text" name="FirstName" value="" >
+          <input type="text" class="form-control" id="FirstName" name="FirstName" value="" >
         </div>
 
 
 
         <div class="form-group"  style="margin-top:20px">
           <label for="LastName">نام خانوادگی </label>
-          <input type="text" class="form-control" id="text" name="LastName" value="">
+          <input type="text" class="form-control" id="LastName" name="LastName" value="">
         </div>
 
 
+
+        <div class="form-group"  style="margin-top:20px">
+          <label for="Email">ایمیل  </label>
+          <input type="text" class="form-control" id="Email" name="Email" value="">
+        </div>
+
         <button type="submit" class="btn btn-primary"  style="margin-top:20px" >ثبت نام</button>
   </form>
-
     </div>
   </section>
 </main>
