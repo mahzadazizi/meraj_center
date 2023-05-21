@@ -14,7 +14,7 @@ uploud file
 <img src="upload/{{session('newFileName')}}" style="display: block; margin:auto">
 @endif 
 
-<form align="center" action="uploadfile" method="POST" enctype="multipart/form-data">
+<form align="center" action="uploadFile" method="POST" enctype="multipart/form-data">
   @csrf
   @method('post')
   <h2>فرم آپلود فایل</h2>

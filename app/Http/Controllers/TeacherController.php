@@ -23,7 +23,7 @@ class TeacherController extends Controller
 
 
     public  function uploadForm(){
-        return view('admin.teachers.uploadfile');
+        return view('admin.teachers.uploadFile');
     }
 
 

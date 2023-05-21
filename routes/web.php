@@ -131,10 +131,11 @@ Route::get('mailSend',[SendMailController::class , 'send']);
 
 
     //teachers upload
-    Route::get('/uploadfile', [TeacherController::class, 'uploadForm']);
-    Route::post('/uploadfile', [TeacherController::class, 'doUpload']);
+    Route::get('uploadFile', [TeacherController::class, 'uploadForm']);
+    Route::post('uploadFile', [TeacherController::class, 'doUpload']);
 
      //teachers login
+
     Route::get('teacherLogin',[TeacherController::class,'login']);
 
     
